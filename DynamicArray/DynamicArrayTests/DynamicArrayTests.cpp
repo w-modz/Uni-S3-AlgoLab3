@@ -21,7 +21,7 @@ namespace DynamicArrayTests
 		{
 			DynamicArray<int> array = DynamicArray<int>();
 			uint32_t size = array.GetSize();
-			uint32_t expected = 0;
+			uint32_t expected = 2;
 			Assert::AreEqual(expected, size);
 		}
 	};

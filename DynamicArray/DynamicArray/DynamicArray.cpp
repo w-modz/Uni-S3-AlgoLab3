@@ -1,12 +1,14 @@
 #include <iostream>
 #include <string>
 
+#define DEFAULT_SIZE 2
+
 template<typename T>
 class DynamicArray
 {
 public:
 	T* values;
-	uint32_t size;
+	uint32_t size = DEFAULT_SIZE;
 public:
 	DynamicArray(void)
 	{
