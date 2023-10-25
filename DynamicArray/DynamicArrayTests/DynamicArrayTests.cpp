@@ -41,17 +41,6 @@ namespace DynamicArrayTests
 			delete array;
 		}
 
-		TEST_METHOD(HandlesIndexOutOfBounds)
-		{
-			DynamicArray<int>* array = new(DynamicArray<int>);
-			int element = 42;
-			array->Set(0, 2);
-			array->Set(3, 5);
-			array->Set(7, 10);
-			Assert::ExpectException <std::out_of_range>([array, element]() {array->Append(element); });
-			delete array;
-		}
-
 		TEST_METHOD(ClearsArray)
 		{
 			DynamicArray<int>* array = new(DynamicArray<int>);
@@ -130,6 +119,17 @@ namespace DynamicArrayTests
 			Assert::AreEqual(NULL, array->Get(5));
 			Assert::AreEqual(NULL, array->Get(6));
 			Assert::AreEqual(NULL, array->Get(7));
+			delete array;
+		}
+
+		TEST_METHOD(ExpandsArray)
+		{
+			DynamicArray<int>* array = new(DynamicArray<int>);
+			array->Set(7, 1);
+			int element = 5;
+			array->Append(element);
+			Assert::AreEqual(element,array->Get(8));
+			Assert::AreEqual((uint32_t) 16, array->GetSize());
 			delete array;
 		}
 	};

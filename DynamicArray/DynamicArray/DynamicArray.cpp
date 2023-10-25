@@ -3,6 +3,7 @@
 #include <array>
 
 #define DEFAULT_SIZE 8
+#define EXPANSION_MULTIPLIER 2
 
 template<typename T>
 class DynamicArray
@@ -26,12 +27,12 @@ public:
 	{
 		return size;
 	}
-
+	// TODO: check for out of bounds index
 	void Set(uint32_t index, T value)
 	{
 		values[index] = value;
 	}
-	
+	// TODO: check for out of bounds index
 	T Get(uint32_t index)
 	{
 		return values[index];
@@ -49,7 +50,7 @@ public:
 		}
 		if (last_full_index + 1 >= size)
 		{
-			throw std::out_of_range("Index out of bounds");
+			Expand();
 		}
 		Set(last_full_index + 1, value);
 	}
@@ -87,6 +88,17 @@ public:
 				}
 			}
 		}
+	}
+
+private:
+	void Expand()
+	{
+		const uint32_t new_size = size * EXPANSION_MULTIPLIER;
+		T* new_values = new T[new_size](NULL);
+		std::memcpy(new_values, values, sizeof(values));
+		delete[] values;
+		values = new_values;
+		size = new_size;
 	}
 };
 
