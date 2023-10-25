@@ -29,5 +29,16 @@ namespace DynamicArrayTests
 			Assert::AreEqual(element, array->Get(1));
 			delete array;
 		}
+
+		TEST_METHOD(AppendsToArray)
+		{
+			DynamicArray<int>* array = new(DynamicArray<int>);
+			int element = 42;
+			array->Set(0, 2);
+			array->Set(3, 5);
+			array->Append(element);
+			Assert::AreEqual(element, array->Get(4));
+			delete array;
+		}
 	};
 }

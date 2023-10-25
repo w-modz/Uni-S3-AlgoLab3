@@ -36,6 +36,19 @@ public:
 	{
 		return values[index];
 	}
+
+	void Append(T value)
+	{
+		int last_full_index = 0;
+		for (int i = 0; i < size; i++)
+		{
+			if (Get(i) != NULL)
+			{
+				last_full_index = i;
+			}
+		}
+		Set(last_full_index + 1, value);
+	}
 };
 
 int main()
