@@ -14,6 +14,8 @@ namespace DynamicArrayTests
 			DynamicArray<int>* array = new(DynamicArray<int>);
 			uint32_t size = array->GetSize();
 			Assert::AreEqual((uint32_t) 2, size);
+			Assert::AreEqual(array->Get(0),NULL);
+			Assert::AreEqual(array->Get(1),NULL);
 			delete array;
 		}
 

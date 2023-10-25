@@ -13,7 +13,7 @@ private:
 public:
 	DynamicArray(void)
 	{
-		values = new T[DEFAULT_SIZE];
+		values = new T[DEFAULT_SIZE](NULL);
 	}
 
 	~DynamicArray()
