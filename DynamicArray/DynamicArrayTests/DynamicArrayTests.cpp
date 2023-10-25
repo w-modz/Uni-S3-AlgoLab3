@@ -16,7 +16,7 @@ namespace DynamicArrayTests
 			Assert::AreEqual((uint32_t) 8, size);
 			for (int i = 0; i < size; i++)
 			{
-				Assert::AreEqual(array->Get(i), NULL);
+				Assert::AreEqual(NULL, array->Get(i));
 			}
 			delete array;
 		}
@@ -49,6 +49,21 @@ namespace DynamicArrayTests
 			array->Set(3, 5);
 			array->Set(7, 10);
 			Assert::ExpectException <std::out_of_range>([array, element]() {array->Append(element); });
+			delete array;
+		}
+
+		TEST_METHOD(ClearsArray)
+		{
+			DynamicArray<int>* array = new(DynamicArray<int>);
+			for (int i = 0; i < array->GetSize(); i++)
+			{
+				array->Set(i, i * 2);
+			}
+			array->Clear();
+			for (int i = 0; i < array->GetSize(); i++)
+			{
+				Assert::AreEqual(NULL, array->Get(i));
+			}
 			delete array;
 		}
 	};

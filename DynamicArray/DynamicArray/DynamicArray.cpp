@@ -53,6 +53,14 @@ public:
 		}
 		Set(last_full_index + 1, value);
 	}
+
+	void Clear()
+	{
+		for (int i = 0; i < size; i++)
+		{
+			Set(i, NULL);
+		}
+	}
 };
 
 int main()
