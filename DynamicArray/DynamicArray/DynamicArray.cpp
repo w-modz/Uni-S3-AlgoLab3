@@ -2,7 +2,7 @@
 #include <string>
 #include <array>
 
-#define DEFAULT_SIZE 2
+#define DEFAULT_SIZE 8
 
 template<typename T>
 class DynamicArray
