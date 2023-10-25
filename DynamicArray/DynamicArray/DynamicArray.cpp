@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <array>
 
 #define DEFAULT_SIZE 2
 
@@ -13,6 +14,12 @@ public:
 	DynamicArray(void)
 	{
 		values = new T[DEFAULT_SIZE];
+	}
+
+	~DynamicArray()
+	{
+		delete[] values;
+		values = nullptr;
 	}
 
 	uint32_t GetSize()
