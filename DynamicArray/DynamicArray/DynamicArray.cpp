@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 #include <array>
+#include <ctime>
+#include <random>
 
 #define DEFAULT_SIZE 8
 #define EXPANSION_MULTIPLIER 2
@@ -152,5 +154,39 @@ private:
 
 int main()
 {
+	std::default_random_engine gen(time(nullptr));
+	std::uniform_int_distribution<int> dist(-5, 5);
+
+	DynamicArray<double>* da = new(DynamicArray<double>);
+	const int order = 5; // maximum order of data input (in powers of 10)
+	const int n = pow(10, order); // data sample size
+	// appending to table
+	clock_t t1 = clock();
+	double max_time_per_element = 0.0;
+
+	for (int i = 0; i < n; i++) 
+	{
+		std::cout << "Appending " << i << " out of " << n << "\n";
+
+		double so = rand() % 100 + 1;
+		clock_t t1_element = clock();
+		da->Append(so);
+		clock_t t2_element = clock();
+		double time_per_element = t2_element - t1_element;
+		if (time_per_element > max_time_per_element)
+		{
+			max_time_per_element = time_per_element;
+		}
+	}
+	clock_t t2 = clock();
+
+	// display of number of elements added, calculation of total time taken and average time per element
+	std::cout << "Array lenght: " << da->GetSize() << "\n";
+	std::cout << "Total time of appending = " << ((t2 - t1) / (double)CLOCKS_PER_SEC) * 1000 << "ms\n";
+	std::cout << "Average time of appending = " << ((t2 - t1) / (double)CLOCKS_PER_SEC) * 1000 / n << "ms\n";
+	std::cout << "Worst time of appending = " << max_time_per_element << "ms\n";
+	da->Clear();
+	delete da;
+
 	return 0;
 }
