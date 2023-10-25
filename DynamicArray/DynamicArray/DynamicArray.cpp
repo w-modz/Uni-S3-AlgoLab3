@@ -61,6 +61,33 @@ public:
 			Set(i, NULL);
 		}
 	}
+
+	void Sort()
+	{
+		for (int i = 0; i < size - 1; i++)
+		{
+			for (int j = 0; j < size - i - 1; j++)
+			{
+				if (values[j] == NULL && values[j + 1] == NULL)
+				{
+				}
+				else if (values[j] == NULL && values[j + 1] != NULL)
+				{
+					values[j] = values[j + 1];
+					values[j + 1] = NULL;
+				}
+				else if (values[j] != NULL && values[j+1] == NULL)
+				{
+				}
+				else if (values[j] > values[j + 1])
+				{
+					int temp = values[j + 1];
+					values[j + 1] = values[j];
+					values[j] = temp;
+				}
+			}
+		}
+	}
 };
 
 int main()

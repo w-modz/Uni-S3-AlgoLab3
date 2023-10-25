@@ -66,5 +66,71 @@ namespace DynamicArrayTests
 			}
 			delete array;
 		}
+
+		TEST_METHOD(DoesNotChangeSortedArray)
+		{
+			DynamicArray<int>* array = new(DynamicArray<int>);
+			array->Set(0, 1);
+			array->Set(1, 2);
+			array->Set(2, 3);
+			array->Set(3, 4);
+			array->Set(4, 5);
+			array->Set(5, 6);
+			array->Set(6, 7);
+			array->Set(7, 8);
+
+			array->Sort();
+
+			Assert::AreEqual(1, array->Get(0));
+			Assert::AreEqual(2, array->Get(1));
+			Assert::AreEqual(3, array->Get(2));
+			Assert::AreEqual(4, array->Get(3));
+			Assert::AreEqual(5, array->Get(4));
+			Assert::AreEqual(6, array->Get(5));
+			Assert::AreEqual(7, array->Get(6));
+			Assert::AreEqual(8, array->Get(7));
+		}
+
+		TEST_METHOD(DoesNotChangeSortedArrayWithNulls)
+		{
+			DynamicArray<int>* array = new(DynamicArray<int>);
+			array->Set(0, 1);
+			array->Set(1, 2);
+			array->Set(2, 3);
+			array->Set(3, 4);
+			array->Set(4, 5);
+
+			array->Sort();
+
+			Assert::AreEqual(1, array->Get(0));
+			Assert::AreEqual(2, array->Get(1));
+			Assert::AreEqual(3, array->Get(2));
+			Assert::AreEqual(4, array->Get(3));
+			Assert::AreEqual(5, array->Get(4));
+			Assert::AreEqual(NULL, array->Get(5));
+			Assert::AreEqual(NULL, array->Get(6));
+			Assert::AreEqual(NULL, array->Get(7));
+		}
+
+		TEST_METHOD(SortsArray)
+		{
+			DynamicArray<int>* array = new(DynamicArray<int>);
+			array->Set(1, 7);
+			array->Set(2, 4);
+			array->Set(6, 13);
+			array->Set(7, 2);
+
+			array->Sort();
+
+			Assert::AreEqual(2, array->Get(0));
+			Assert::AreEqual(4, array->Get(1));
+			Assert::AreEqual(7, array->Get(2));
+			Assert::AreEqual(13, array->Get(3));
+			Assert::AreEqual(NULL, array->Get(4));
+			Assert::AreEqual(NULL, array->Get(5));
+			Assert::AreEqual(NULL, array->Get(6));
+			Assert::AreEqual(NULL, array->Get(7));
+			delete array;
+		}
 	};
 }
