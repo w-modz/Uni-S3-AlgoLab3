@@ -7,7 +7,7 @@
 template<typename T>
 class DynamicArray
 {
-public:
+private:
 	T* values;
 	uint32_t size = DEFAULT_SIZE;
 public:
@@ -30,6 +30,11 @@ public:
 	void Set(uint32_t index, T value)
 	{
 		values[index] = value;
+	}
+	
+	T Get(uint32_t index)
+	{
+		return values[index];
 	}
 };
 

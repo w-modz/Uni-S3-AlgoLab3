@@ -13,18 +13,16 @@ namespace DynamicArrayTests
 		{
 			DynamicArray<int>* array = new(DynamicArray<int>);
 			uint32_t size = array->GetSize();
-			uint32_t expected = 2;
-			Assert::AreEqual(expected, size);
-			Assert::IsNotNull(array->values);
+			Assert::AreEqual((uint32_t) 2, size);
 			delete array;
 		}
 
-		TEST_METHOD(SetsElementAtIndex)
+		TEST_METHOD(GetsSetsElementAtIndex)
 		{
 			DynamicArray<int>* array = new(DynamicArray<int>);
 			int element = 42;
 			array->Set(1, element);
-			Assert::AreEqual(element, array->values[1]);
+			Assert::AreEqual(element, array->Get(1));
 			delete array;
 		}
 	};
