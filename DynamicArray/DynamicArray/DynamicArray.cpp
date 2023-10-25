@@ -15,10 +15,6 @@ public:
 		
 	}
 
-	std::string HelloWorld()
-	{
-		return "Hello\n";
-	}
 	uint32_t GetSize()
 	{
 		return size;

@@ -9,14 +9,6 @@ namespace DynamicArrayTests
 	TEST_CLASS(DynamicArrayTests)
 	{
 	public:
-		
-		TEST_METHOD(TestMethod1)
-		{
-			DynamicArray<int> array = DynamicArray<int>();
-			std::string expected = "Hello\n";
-			Assert::AreEqual(expected, array.HelloWorld());
-		}
-
 		TEST_METHOD(InitializesDynamicArray)
 		{
 			DynamicArray<int> array = DynamicArray<int>();
