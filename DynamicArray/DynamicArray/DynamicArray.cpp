@@ -69,6 +69,7 @@ public:
 		}
 	}
 
+	// The sorting method assumes existance of valid ">" operator overload for given datatype
 	void Sort()
 	{
 		for (int i = 0; i < size - 1; i++)
@@ -94,6 +95,44 @@ public:
 				}
 			}
 		}
+	}
+
+	std::string ToString(uint32_t number_to_print)
+	{
+		if (number_to_print == 0)
+		{
+			return "[]";
+		}
+		else if (size == 0)
+		{
+			return "[]";
+		}
+		else if (size < number_to_print)
+		{
+			throw std::out_of_range("Index out of bounds");
+		}
+		std::ostringstream output_stream;
+		if (values[0] == NULL)
+		{
+			output_stream << "[NULL";
+		}
+		else
+		{
+			output_stream << "[" << values[0];
+		}
+		for (int i = 1; i < number_to_print; i++)
+		{
+			if (values[i] == NULL)
+			{
+				output_stream << ", NULL";
+			}
+			else
+			{
+				output_stream << ", " << values[i];
+			}
+		}
+		output_stream << "]\n";
+		return output_stream.str();
 	}
 
 private:

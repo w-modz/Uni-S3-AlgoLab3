@@ -159,5 +159,29 @@ namespace DynamicArrayTests
 			Assert::AreEqual((uint32_t)16, array->GetSize());
 			delete array;
 		}
+
+		TEST_METHOD(PrintsCorrectArrayString)
+		{
+			DynamicArray<int>* array = new(DynamicArray<int>);
+			array->Set(0, 1);
+			array->Set(1, 2);
+			array->Set(2, 3);
+			array->Set(3, 4);
+			array->Set(4, 5);
+			array->Set(5, 6);
+			array->Set(6, 7);
+			array->Set(7, 8);
+			std::string expected = "[1, 2, 3, 4, 5, 6, 7, 8]\n";
+			Assert::AreEqual(expected, array->ToString(8));
+			delete array;
+		}
+
+		TEST_METHOD(PrintsArrayWhenNull)
+		{
+			DynamicArray<int>* array = new(DynamicArray<int>);
+			std::string expected = "[NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL]\n";
+			Assert::AreEqual(expected, array->ToString(8));
+			delete array;
+		}
 	};
 }
