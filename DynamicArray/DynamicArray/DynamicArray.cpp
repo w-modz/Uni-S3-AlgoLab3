@@ -27,32 +27,38 @@ public:
 	{
 		return size;
 	}
-	// TODO: check for out of bounds index
 	void Set(uint32_t index, T value)
 	{
+		if (index >= size)
+		{
+			throw std::out_of_range("Index out of bounds");
+		}
 		values[index] = value;
 	}
-	// TODO: check for out of bounds index
 	T Get(uint32_t index)
 	{
+		if (index >= size)
+		{
+			throw std::out_of_range("Index out of bounds");
+		}
 		return values[index];
 	}
 
 	void Append(T value)
 	{
-		int last_full_index = 0;
+		int last_non_null_index = 0;
 		for (int i = 0; i < size; i++)
 		{
 			if (Get(i) != NULL)
 			{
-				last_full_index = i;
+				last_non_null_index = i;
 			}
 		}
-		if (last_full_index + 1 >= size)
+		if (last_non_null_index + 1 >= size)
 		{
 			Expand();
 		}
-		Set(last_full_index + 1, value);
+		Set(last_non_null_index + 1, value);
 	}
 
 	void Clear()

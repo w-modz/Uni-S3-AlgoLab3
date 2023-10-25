@@ -132,5 +132,16 @@ namespace DynamicArrayTests
 			Assert::AreEqual((uint32_t) 16, array->GetSize());
 			delete array;
 		}
+
+		TEST_METHOD(ExpandsArray)
+		{
+			DynamicArray<int>* array = new(DynamicArray<int>);
+			array->Set(7, 1);
+			int element = 5;
+			array->Append(element);
+			Assert::AreEqual(element, array->Get(8));
+			Assert::AreEqual((uint32_t)16, array->GetSize());
+			delete array;
+		}
 	};
 }
