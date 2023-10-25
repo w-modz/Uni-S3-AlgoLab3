@@ -11,10 +11,12 @@ namespace DynamicArrayTests
 	public:
 		TEST_METHOD(InitializesDynamicArray)
 		{
-			DynamicArray<int> array = DynamicArray<int>();
-			uint32_t size = array.GetSize();
+			DynamicArray<int>* array = new(DynamicArray<int>);
+			uint32_t size = array->GetSize();
 			uint32_t expected = 2;
 			Assert::AreEqual(expected, size);
+			Assert::IsNotNull(array->values);
+			delete array;
 		}
 	};
 }

@@ -12,7 +12,7 @@ public:
 public:
 	DynamicArray(void)
 	{
-		
+		values = new T[DEFAULT_SIZE];
 	}
 
 	uint32_t GetSize()
