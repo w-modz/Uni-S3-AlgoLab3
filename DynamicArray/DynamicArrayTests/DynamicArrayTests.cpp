@@ -18,5 +18,14 @@ namespace DynamicArrayTests
 			Assert::IsNotNull(array->values);
 			delete array;
 		}
+
+		TEST_METHOD(SetsElementAtIndex)
+		{
+			DynamicArray<int>* array = new(DynamicArray<int>);
+			int element = 42;
+			array->Set(1, element);
+			Assert::AreEqual(element, array->values[1]);
+			delete array;
+		}
 	};
 }

@@ -26,6 +26,11 @@ public:
 	{
 		return size;
 	}
+
+	void Set(uint32_t index, T value)
+	{
+		values[index] = value;
+	}
 };
 
 int main()
