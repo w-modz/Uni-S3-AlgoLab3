@@ -47,6 +47,10 @@ public:
 				last_full_index = i;
 			}
 		}
+		if (last_full_index + 1 >= size)
+		{
+			throw std::out_of_range("Index out of bounds");
+		}
 		Set(last_full_index + 1, value);
 	}
 };
