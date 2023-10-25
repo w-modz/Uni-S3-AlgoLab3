@@ -133,12 +133,28 @@ namespace DynamicArrayTests
 			delete array;
 		}
 
-		TEST_METHOD(ExpandsArray)
+		TEST_METHOD(ExpandsArrayWithCorrectCopying)
 		{
 			DynamicArray<int>* array = new(DynamicArray<int>);
-			array->Set(7, 1);
+			array->Set(0, 1);
+			array->Set(1, 2);
+			array->Set(2, 3);
+			array->Set(3, 4);
+			array->Set(4, 5);
+			array->Set(5, 6);
+			array->Set(6, 7);
+			array->Set(7, 8);
+
 			int element = 5;
 			array->Append(element);
+			Assert::AreEqual(1, array->Get(0));
+			Assert::AreEqual(2, array->Get(1));
+			Assert::AreEqual(3, array->Get(2));
+			Assert::AreEqual(4, array->Get(3));
+			Assert::AreEqual(5, array->Get(4));
+			Assert::AreEqual(6, array->Get(5));
+			Assert::AreEqual(7, array->Get(6));
+			Assert::AreEqual(8, array->Get(7));
 			Assert::AreEqual(element, array->Get(8));
 			Assert::AreEqual((uint32_t)16, array->GetSize());
 			delete array;

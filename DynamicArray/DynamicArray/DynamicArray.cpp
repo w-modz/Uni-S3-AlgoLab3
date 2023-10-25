@@ -101,7 +101,10 @@ private:
 	{
 		const uint32_t new_size = size * EXPANSION_MULTIPLIER;
 		T* new_values = new T[new_size](NULL);
-		std::memcpy(new_values, values, sizeof(values));
+		for (int i = 0; i < size; i++)
+		{
+			new_values[i] = values[i];
+		}
 		delete[] values;
 		values = new_values;
 		size = new_size;
