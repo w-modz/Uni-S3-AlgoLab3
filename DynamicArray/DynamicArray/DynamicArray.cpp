@@ -78,18 +78,12 @@ public:
 		{
 			for (int j = 0; j < size - i - 1; j++)
 			{
-				if (values[j] == NULL && values[j + 1] == NULL)
-				{
-				}
-				else if (values[j] == NULL && values[j + 1] != NULL)
+				if (values[j] == NULL && values[j + 1] != NULL)
 				{
 					values[j] = values[j + 1];
 					values[j + 1] = NULL;
 				}
-				else if (values[j] != NULL && values[j+1] == NULL)
-				{
-				}
-				else if (values[j] > values[j + 1])
+				else if (values[j] > values[j + 1] && values[j + 1] != NULL)
 				{
 					int temp = values[j + 1];
 					values[j + 1] = values[j];
